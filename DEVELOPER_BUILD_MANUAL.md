@@ -286,39 +286,22 @@ Key notes:
 
 **External contractors & partners**
 
-- Assign the **Contractors** role when inviting vendors so sensitive channels
-  remain hidden by default.
-- Use `#partner-lobby`, `#partner-artifacts`, and `#partner-standups` for daily
-  collaboration; leadership posts direction and constraints in
-  `#partner-briefing`.
-- Keep finance/governance, on-call, and incident channels internal by not
-  granting contractors those roles; mirror critical decisions back into
-  partner-visible threads as required.
+- Assign the **Contractors** role as soon as invites are accepted so sensitive
+  channels remain hidden by default.
+- Duplicate the **Partner-Projects** category from `server_spec.json` per
+  vendor/programme (lobby, briefing, artifacts, standups) to keep workstreams
+  isolated.
+- Configure `/standup_sched`, `/standup`, and `/wbs` inside partner areas only;
+  keep `/deploy approve` and retrospectives for internal roles and copy the
+  results back into partner threads.
+- Share curated runbooks/templates in `#partner-artifacts`, track requests in
+  `#partner-briefing`, and avoid exposing governance/on-call channels directly.
+- Audit membership monthly, revoke access immediately after contract completion,
+  and archive partner threads alongside the latest `server_state.json` snapshot.
 
 ---
 
-## 7) External Contractor & Partner Enablement
-
-1. **Role provisioning** – Assign the **Contractors** role immediately after the
-   invite is accepted. Keep internal roles (DevOps, Governance, On-Call) scoped
-   to employees only.
-2. **Workspace allocation** – Move contract teams into the
-   `Partner-Projects` category. Duplicate the category per vendor or per
-   programme by copying the block in `server_spec.json` and renaming the
-   channels.
-3. **Information boundaries** – Share curated runbooks/templates in
-   `#partner-artifacts` and summarise approvals in `#partner-briefing` instead of
-   exposing internal governance threads.
-4. **Automation usage** – Configure `/standup_sched` and `/wbs` within the
-   partner category only. `/deploy approve` should stay internal; replicate the
-   outcome card in partner channels once governance approves.
-5. **Security & exit** – Audit membership monthly, disable access immediately
-   after contract completion, and archive partner channels via Discord's export
-   plus `server_state.json` snapshots.
-
----
-
-## 8) Integration Details (Concise but Exact)
+## 7) Integration Details (Concise but Exact)
 
 **GitHub Webhook**
 - Events: `push`, `pull_request`, `workflow_run`.
@@ -340,7 +323,7 @@ Key notes:
 
 ---
 
-## 9) Security, Privacy, Compliance
+## 8) Security, Privacy, Compliance
 
 - Keep secrets in `.env`; never commit them; rotate on handover.
 - Enforce channel overwrites per `server_spec.json`, especially read-only and
@@ -352,7 +335,7 @@ Key notes:
 
 ---
 
-## 10) Testing Plan (Minimum)
+## 9) Testing Plan (Minimum)
 
 1. **Provisioning validation**
    - Run the blueprint; verify categories/channels/permissions.
@@ -384,7 +367,7 @@ Key notes:
 
 ---
 
-## 11) Ops Runbook (Cheat Sheet)
+## 10) Ops Runbook (Cheat Sheet)
 
 - Restart bots: `systemctl restart nativex-ops-bot` / `nativex-ai-router` or
   `docker compose restart ops_bot ai_router_bot`.
@@ -397,7 +380,7 @@ Key notes:
 
 ---
 
-## 12) Handover Checklist (Final)
+## 11) Handover Checklist (Final)
 
 - Promote customer contact to Server Owner; remove developer Admin access.
 - Rotate Discord bot tokens, provider API keys, and webhook secrets; regenerate
@@ -411,7 +394,7 @@ Key notes:
 
 ---
 
-## 13) Deliverables (What the Developer Must Hand Back)
+## 12) Deliverables (What the Developer Must Hand Back)
 
 - Running Discord server matching `server_spec.json` (duplicate project
   categories as requested).
