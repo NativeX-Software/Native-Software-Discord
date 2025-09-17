@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+  ops_bot:
+    build:
+      context: ./discord_slash_bot_plus
+    image: native-software/ops-slash-bot:latest
+    container_name: native_ops_bot
+    restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    volumes:
+      - ./discord_slash_bot_plus/.env:/app/.env:ro
+      - ./discord_slash_bot_plus/data/schedules.json:/app/data/schedules.json
+      - ./discord_slash_bot_plus/data/oncall.json:/app/data/oncall.json
+      - ./discord_slash_bot_plus/data/wbs_templates:/app/data/wbs_templates:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  ai_router_bot:
+    build:
+      context: ./discord_ai_router_bot
+    image: native-software/ai-router-bot:latest
+    container_name: native_ai_router
+    restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    volumes:
+      - ./discord_ai_router_bot/.env:/app/.env:ro
+      - ./discord_ai_router_bot/prompts.json:/app/prompts.json:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  watchtower:
+    image: containrrr/watchtower:1.5.1
+    container_name: native_watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_LABEL_ENABLE=true
+    command: --cleanup --interval 300
+    depends_on:
+      - ops_bot
+      - ai_router_bot

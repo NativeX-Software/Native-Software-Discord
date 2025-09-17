@@ -10,7 +10,7 @@ queries.
 - Provider abstraction with pluggable backends (`openai`, `anthropic`, `gemini`,
   `grok`).
 - Role prompts defined in `prompts.json` for personas such as engineering,
-  product, ops, exec, design, and research.
+  product, ops, exec, design, research, and partner/vendor delivery.
 - `/ai` command options:
   - `provider` – provider to call (default configurable via `.env`).
   - `model` – provider-specific model name.
@@ -48,6 +48,18 @@ Required environment variables:
 - Adjust rate limits or add billing guards in `ai_router.py` to align with your
   spend policies.
 - Rotate all API keys during handover and store them in your secret manager.
+-- A Dockerfile is provided. The top-level `docker-compose.yml` runs this bot
+alongside the ops bot and Watchtower:
+
+  ```bash
+  docker compose build ai_router_bot
+  docker compose up -d ai_router_bot
+  ```
+
+  Ensure `discord_ai_router_bot/.env` contains the provider keys before bringing
+  the container online. The compose stack mounts `.env` read-only and
+  `prompts.json` so persona updates can be made without rebuilding.
+>>>>>>> theirs
 
 ## Testing Checklist
 
