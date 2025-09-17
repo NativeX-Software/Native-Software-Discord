@@ -1,0 +1,26 @@
+{
+  "project": "Sample Delivery",
+  "phases": [
+    {
+      "name": "Discovery",
+      "tasks": [
+        {"name": "Kickoff Workshop", "owner": "PMO", "due": "2024-05-27"},
+        {"name": "Stakeholder Interviews", "owner": "UX", "due": "2024-05-29"}
+      ]
+    },
+    {
+      "name": "Delivery",
+      "tasks": [
+        {"name": "Implement Core Service", "owner": "Backend", "due": "2024-06-10"},
+        {"name": "Quality Assurance", "owner": "QA", "due": "2024-06-14"}
+      ]
+    },
+    {
+      "name": "Launch",
+      "tasks": [
+        {"name": "Cutover", "owner": "DevOps", "due": "2024-06-20"},
+        {"name": "Post-launch Retro", "owner": "Scrum Master", "due": "2024-06-27"}
+      ]
+    }
+  ]
+}
