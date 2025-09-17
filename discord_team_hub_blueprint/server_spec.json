@@ -1,0 +1,519 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "description": "Native Software Discord collaboration hub blueprint",
+    "last_updated": "2024-05-20"
+  },
+  "roles": [
+    {
+      "name": "Owner",
+      "colour": "#f1c40f",
+      "hoist": true,
+      "mentionable": true,
+      "permissions": {
+        "administrator": true
+      }
+    },
+    {
+      "name": "Program Manager",
+      "colour": "#2980b9",
+      "hoist": true,
+      "mentionable": true,
+      "permissions": {
+        "manage_guild": true,
+        "manage_roles": true,
+        "manage_channels": true,
+        "manage_events": true,
+        "view_audit_log": true,
+        "manage_messages": true,
+        "send_messages": true,
+        "embed_links": true,
+        "attach_files": true,
+        "read_message_history": true,
+        "use_external_emojis": true,
+        "use_external_stickers": true,
+        "add_reactions": true,
+        "manage_threads": true
+      }
+    },
+    {
+      "name": "Project Manager",
+      "colour": "#9b59b6",
+      "hoist": true,
+      "mentionable": true,
+      "permissions": {
+        "manage_channels": true,
+        "manage_events": true,
+        "manage_messages": true,
+        "send_messages": true,
+        "embed_links": true,
+        "attach_files": true,
+        "read_message_history": true,
+        "add_reactions": true,
+        "manage_threads": true
+      }
+    },
+    {
+      "name": "Scrum Master",
+      "colour": "#16a085",
+      "hoist": true,
+      "mentionable": true,
+      "permissions": {
+        "manage_events": true,
+        "manage_messages": true,
+        "send_messages": true,
+        "embed_links": true,
+        "attach_files": true,
+        "read_message_history": true,
+        "add_reactions": true,
+        "manage_threads": true
+      }
+    },
+    {
+      "name": "DevOps",
+      "colour": "#27ae60",
+      "hoist": true,
+      "mentionable": true,
+      "permissions": {
+        "manage_webhooks": true,
+        "manage_channels": true,
+        "manage_events": true,
+        "manage_messages": true,
+        "send_messages": true,
+        "embed_links": true,
+        "attach_files": true,
+        "read_message_history": true,
+        "add_reactions": true,
+        "mute_members": true,
+        "deafen_members": true,
+        "move_members": true,
+        "manage_threads": true
+      }
+    },
+    {
+      "name": "Developers",
+      "colour": "#1abc9c",
+      "hoist": true,
+      "mentionable": true,
+      "permissions": {
+        "send_messages": true,
+        "embed_links": true,
+        "attach_files": true,
+        "read_message_history": true,
+        "add_reactions": true,
+        "use_application_commands": true
+      }
+    },
+    {
+      "name": "Designers",
+      "colour": "#e67e22",
+      "hoist": true,
+      "mentionable": true,
+      "permissions": {
+        "send_messages": true,
+        "embed_links": true,
+        "attach_files": true,
+        "read_message_history": true,
+        "add_reactions": true,
+        "use_application_commands": true
+      }
+    },
+    {
+      "name": "QA",
+      "colour": "#c0392b",
+      "hoist": true,
+      "mentionable": true,
+      "permissions": {
+        "send_messages": true,
+        "embed_links": true,
+        "attach_files": true,
+        "read_message_history": true,
+        "add_reactions": true,
+        "use_application_commands": true
+      }
+    },
+    {
+      "name": "On-Call",
+      "colour": "#e84393",
+      "hoist": true,
+      "mentionable": true,
+      "permissions": {
+        "send_messages": true,
+        "embed_links": true,
+        "attach_files": true,
+        "read_message_history": true,
+        "add_reactions": true,
+        "manage_threads": true
+      }
+    },
+    {
+      "name": "Stakeholders",
+      "colour": "#7f8c8d",
+      "hoist": false,
+      "mentionable": true,
+      "permissions": {
+        "send_messages": true,
+        "embed_links": true,
+        "attach_files": true,
+        "read_message_history": true,
+        "add_reactions": true
+      }
+    },
+    {
+      "name": "Bots",
+      "colour": "#95a5a6",
+      "hoist": false,
+      "mentionable": false,
+      "permissions": {
+        "send_messages": true,
+        "embed_links": true,
+        "attach_files": true,
+        "read_message_history": true,
+        "add_reactions": true,
+        "manage_webhooks": true
+      }
+    }
+  ],
+  "categories": [
+    {
+      "name": "General",
+      "channels": [
+        {
+          "name": "welcome",
+          "type": "text",
+          "topic": "Orientation hub with onboarding resources and links.",
+          "slowmode_delay": 0
+        },
+        {
+          "name": "announcements",
+          "type": "text",
+          "topic": "Executive and program announcements (read-only).",
+          "slowmode_delay": 0,
+          "overwrites": {
+            "@everyone": {
+              "deny": ["send_messages", "create_public_threads", "create_private_threads"]
+            },
+            "Program Manager": {
+              "allow": ["send_messages", "create_public_threads"]
+            },
+            "Owner": {
+              "allow": ["send_messages", "create_public_threads"]
+            },
+            "Bots": {
+              "allow": ["send_messages"]
+            }
+          }
+        },
+        {
+          "name": "ai-requests",
+          "type": "text",
+          "topic": "Route /ai commands and summaries.",
+          "slowmode_delay": 5
+        },
+        {
+          "name": "random",
+          "type": "text",
+          "topic": "Watercooler chat.",
+          "slowmode_delay": 0
+        }
+      ]
+    },
+    {
+      "name": "Programs",
+      "channels": [
+        {
+          "name": "program-updates",
+          "type": "text",
+          "topic": "Program portfolio news and executive summaries.",
+          "slowmode_delay": 10
+        },
+        {
+          "name": "governance-calendar",
+          "type": "text",
+          "topic": "Important meetings, steering reviews, and gates.",
+          "slowmode_delay": 0
+        }
+      ]
+    },
+    {
+      "name": "Project-Alpha",
+      "channels": [
+        {
+          "name": "alpha-planning",
+          "type": "text",
+          "topic": "Planning and roadmap for Project Alpha.",
+          "slowmode_delay": 0
+        },
+        {
+          "name": "alpha-design",
+          "type": "text",
+          "topic": "Design collaboration for Project Alpha.",
+          "slowmode_delay": 0
+        },
+        {
+          "name": "alpha-dev",
+          "type": "text",
+          "topic": "Development discussions for Project Alpha.",
+          "slowmode_delay": 0
+        },
+        {
+          "name": "alpha-test",
+          "type": "text",
+          "topic": "QA and testing coordination for Project Alpha.",
+          "slowmode_delay": 0
+        },
+        {
+          "name": "alpha-retro",
+          "type": "text",
+          "topic": "Retrospectives for Project Alpha.",
+          "slowmode_delay": 0,
+          "overwrites": {
+            "Stakeholders": {
+              "deny": ["send_messages"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Agile",
+      "channels": [
+        {
+          "name": "standups",
+          "type": "text",
+          "topic": "Daily standup updates and /standup command output.",
+          "slowmode_delay": 0
+        },
+        {
+          "name": "backlog",
+          "type": "text",
+          "topic": "Backlog refinement and grooming discussions.",
+          "slowmode_delay": 0
+        },
+        {
+          "name": "retro-hall",
+          "type": "text",
+          "topic": "Retrospectives scheduling and synthesis.",
+          "slowmode_delay": 0
+        }
+      ]
+    },
+    {
+      "name": "Waterfall",
+      "channels": [
+        {
+          "name": "req-signoff",
+          "type": "text",
+          "topic": "Requirement sign-off gate with approvals.",
+          "slowmode_delay": 0,
+          "overwrites": {
+            "@everyone": {
+              "deny": ["send_messages"]
+            },
+            "Program Manager": {
+              "allow": ["send_messages"]
+            },
+            "Project Manager": {
+              "allow": ["send_messages"]
+            },
+            "DevOps": {
+              "allow": ["send_messages"]
+            }
+          }
+        },
+        {
+          "name": "design-phase",
+          "type": "text",
+          "topic": "Design deliverables and approvals.",
+          "slowmode_delay": 0
+        },
+        {
+          "name": "qa-phase",
+          "type": "text",
+          "topic": "QA exit criteria and reporting.",
+          "slowmode_delay": 0
+        },
+        {
+          "name": "uat-phase",
+          "type": "text",
+          "topic": "User acceptance testing coordination.",
+          "slowmode_delay": 0
+        },
+        {
+          "name": "release-approval",
+          "type": "text",
+          "topic": "Release approval workflow with /deploy approve.",
+          "slowmode_delay": 0,
+          "overwrites": {
+            "@everyone": {
+              "deny": ["send_messages"]
+            },
+            "Program Manager": {
+              "allow": ["send_messages"]
+            },
+            "Project Manager": {
+              "allow": ["send_messages"]
+            },
+            "DevOps": {
+              "allow": ["send_messages"]
+            },
+            "Bots": {
+              "allow": ["send_messages"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "DevOps & CI/CD",
+      "channels": [
+        {
+          "name": "ci-cd-pipeline",
+          "type": "text",
+          "topic": "Automated pipeline status from GitHub/GitLab/Jenkins/Azure DevOps.",
+          "slowmode_delay": 0,
+          "overwrites": {
+            "@everyone": {
+              "deny": ["send_messages"]
+            },
+            "DevOps": {
+              "allow": ["send_messages"]
+            },
+            "Bots": {
+              "allow": ["send_messages"]
+            }
+          }
+        },
+        {
+          "name": "alerts",
+          "type": "text",
+          "topic": "Monitoring and incident alerts (Grafana/Prometheus/Datadog/Sentry).",
+          "slowmode_delay": 0,
+          "overwrites": {
+            "@everyone": {
+              "deny": ["send_messages"]
+            },
+            "DevOps": {
+              "allow": ["send_messages"]
+            },
+            "On-Call": {
+              "allow": ["send_messages"]
+            },
+            "Bots": {
+              "allow": ["send_messages"]
+            }
+          }
+        },
+        {
+          "name": "deployments",
+          "type": "text",
+          "topic": "Deployment tracking and status updates.",
+          "slowmode_delay": 0
+        },
+        {
+          "name": "runbooks",
+          "type": "text",
+          "topic": "Pinned SOPs and operational runbooks.",
+          "slowmode_delay": 0
+        },
+        {
+          "name": "on-call",
+          "type": "text",
+          "topic": "Private on-call coordination and escalation.",
+          "slowmode_delay": 0,
+          "overwrites": {
+            "@everyone": {
+              "deny": ["view_channel"]
+            },
+            "DevOps": {
+              "allow": ["view_channel", "send_messages"]
+            },
+            "On-Call": {
+              "allow": ["view_channel", "send_messages"]
+            },
+            "Program Manager": {
+              "allow": ["view_channel", "send_messages"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Design & Docs",
+      "channels": [
+        {
+          "name": "design-collab",
+          "type": "text",
+          "topic": "Figma and design discussions.",
+          "slowmode_delay": 0
+        },
+        {
+          "name": "project-artifacts",
+          "type": "text",
+          "topic": "Store design links, documents, and approvals.",
+          "slowmode_delay": 0
+        },
+        {
+          "name": "how-to",
+          "type": "text",
+          "topic": "Onboarding guides and SOPs.",
+          "slowmode_delay": 0
+        }
+      ]
+    },
+    {
+      "name": "Governance",
+      "channels": [
+        {
+          "name": "risk-register",
+          "type": "text",
+          "topic": "Risk tracking and mitigations.",
+          "slowmode_delay": 0
+        },
+        {
+          "name": "audit-log",
+          "type": "text",
+          "topic": "Reference for significant changes and decisions.",
+          "slowmode_delay": 0
+        }
+      ]
+    },
+    {
+      "name": "Voice & Stage",
+      "channels": [
+        {
+          "name": "war-room",
+          "type": "voice",
+          "bitrate": 64000,
+          "user_limit": 0
+        },
+        {
+          "name": "daily-sync",
+          "type": "voice",
+          "bitrate": 64000,
+          "user_limit": 0
+        },
+        {
+          "name": "town-hall",
+          "type": "stage",
+          "topic": "Large scale announcements and AMAs."
+        }
+      ]
+    }
+  ],
+  "webhooks": [
+    {
+      "channel": "ci-cd-pipeline",
+      "name": "CI Pipeline"
+    },
+    {
+      "channel": "alerts",
+      "name": "Monitoring Alerts"
+    }
+  ],
+  "state_files": [
+    "server_state.json",
+    "schedules.json",
+    "oncall.json"
+  ]
+}
