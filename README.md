@@ -50,4 +50,3 @@ docker compose up -d
 Populate the `.env` files in each bot directory before starting the stack. The
 Watchtower container is label-scoped and will only manage the bots defined in
 this compose file.
->>>>>>> theirs

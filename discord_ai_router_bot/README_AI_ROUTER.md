@@ -48,8 +48,8 @@ Required environment variables:
 - Adjust rate limits or add billing guards in `ai_router.py` to align with your
   spend policies.
 - Rotate all API keys during handover and store them in your secret manager.
--- A Dockerfile is provided. The top-level `docker-compose.yml` runs this bot
-alongside the ops bot and Watchtower:
+- A Dockerfile is provided. The top-level `docker-compose.yml` runs this bot
+  alongside the ops bot and Watchtower:
 
   ```bash
   docker compose build ai_router_bot
@@ -59,7 +59,6 @@ alongside the ops bot and Watchtower:
   Ensure `discord_ai_router_bot/.env` contains the provider keys before bringing
   the container online. The compose stack mounts `.env` read-only and
   `prompts.json` so persona updates can be made without rebuilding.
->>>>>>> theirs
 
 ## Testing Checklist
 

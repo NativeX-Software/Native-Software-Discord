@@ -16,12 +16,9 @@ approvals, retrospectives, and on-call rotations.
 - `/oncall` manages named rotations (setup, add, remove, list, rotate) stored in
   `data/oncall.json` and synchronises the Discord role assignment.
 - `/retro open` seeds threaded retrospective lanes (Keep/Drop/Start/Kudos).
-<<<<<<< ours
-=======
 - `#partner-standups` and the wider Partner-Projects category are ready for
   external contractors; keep sensitive retros/approvals in internal channels and
   mirror only the summaries.
->>>>>>> theirs
 
 ## Quick Start
 
@@ -64,15 +61,12 @@ Grant the following Discord permissions to the bot:
 
 ## Deployment Notes
 
+- For systemd, set `WorkingDirectory` to the project folder and `EnvironmentFile`
   to the `.env` path. Ensure the service user can read/write the `data/`
   directory.
-For Docker, mount the project directory and pass environment variables via a
-secret store. Persist the `data/` directory as a volume to retain schedules and
-on-call rotations.
-
-For containerised deployments, a Dockerfile is provided. Use the repository
-root `docker-compose.yml` to run the ops bot alongside the AI router and
-Watchtower:
+- For containerised deployments, a Dockerfile is provided. Use the repository
+  root `docker-compose.yml` to run the ops bot alongside the AI router and
+  Watchtower:
 
   ```bash
   docker compose build ops_bot

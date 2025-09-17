@@ -2,11 +2,7 @@
   "metadata": {
     "version": "1.0.0",
     "description": "Native Software Discord collaboration hub blueprint",
-<<<<<<< ours
-    "last_updated": "2024-05-20"
-=======
     "last_updated": "2024-06-10"
->>>>>>> theirs
   },
   "roles": [
     {
@@ -164,6 +160,7 @@
         "use_application_commands": true
       }
     },
+    {
       "name": "Stakeholders",
       "colour": "#7f8c8d",
       "hoist": false,
@@ -293,8 +290,6 @@
       ]
     },
     {
-<<<<<<< ours
-=======
       "name": "Partner-Projects",
       "channels": [
         {
@@ -441,7 +436,6 @@
       ]
     },
     {
->>>>>>> theirs
       "name": "Agile",
       "channels": [
         {
