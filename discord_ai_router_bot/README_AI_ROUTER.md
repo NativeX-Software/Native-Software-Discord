@@ -10,7 +10,7 @@ queries.
 - Provider abstraction with pluggable backends (`openai`, `anthropic`, `gemini`,
   `grok`).
 - Role prompts defined in `prompts.json` for personas such as engineering,
-  product, ops, exec, design, and research.
+  product, ops, exec, design, research, and partner/vendor delivery.
 - `/ai` command options:
   - `provider` – provider to call (default configurable via `.env`).
   - `model` – provider-specific model name.

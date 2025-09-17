@@ -16,6 +16,9 @@ approvals, retrospectives, and on-call rotations.
 - `/oncall` manages named rotations (setup, add, remove, list, rotate) stored in
   `data/oncall.json` and synchronises the Discord role assignment.
 - `/retro open` seeds threaded retrospective lanes (Keep/Drop/Start/Kudos).
+- `#partner-standups` and the wider Partner-Projects category are ready for
+  external contractors; keep sensitive retros/approvals in internal channels and
+  mirror only the summaries.
 
 ## Quick Start
 

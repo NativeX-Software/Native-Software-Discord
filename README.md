@@ -11,6 +11,11 @@ This repository contains the three deliverables requested in the project brief:
 3. **`discord_ai_router_bot/`** – AI router bot exposing `/ai` and routing prompts
    to OpenAI, Anthropic, Gemini, or Grok with role-based system prompts.
 
+The blueprint now includes a **Contractors** role and a dedicated
+**Partner-Projects** category so the Native Software Discord team can onboard
+external contributors while keeping governance, incident response, and finance
+channels internal.
+
 Each folder includes a dedicated README with setup instructions, environment
 variables, and testing checklists. A consolidated build manual lives at
 `DEVELOPER_BUILD_MANUAL.md` and mirrors the delivery checklist provided in the

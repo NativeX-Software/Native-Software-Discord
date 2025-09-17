@@ -2,7 +2,7 @@
   "metadata": {
     "version": "1.0.0",
     "description": "Native Software Discord collaboration hub blueprint",
-    "last_updated": "2024-05-20"
+    "last_updated": "2024-06-10"
   },
   "roles": [
     {
@@ -147,6 +147,20 @@
       }
     },
     {
+      "name": "Contractors",
+      "colour": "#34495e",
+      "hoist": false,
+      "mentionable": true,
+      "permissions": {
+        "send_messages": true,
+        "embed_links": true,
+        "attach_files": true,
+        "read_message_history": true,
+        "add_reactions": true,
+        "use_application_commands": true
+      }
+    },
+    {
       "name": "Stakeholders",
       "colour": "#7f8c8d",
       "hoist": false,
@@ -270,6 +284,152 @@
           "overwrites": {
             "Stakeholders": {
               "deny": ["send_messages"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Partner-Projects",
+      "channels": [
+        {
+          "name": "partner-lobby",
+          "type": "text",
+          "topic": "Shared space with contractors and external contributors.",
+          "slowmode_delay": 0,
+          "overwrites": {
+            "@everyone": {
+              "deny": ["view_channel"]
+            },
+            "Owner": {
+              "allow": ["view_channel", "send_messages", "create_public_threads", "create_private_threads"]
+            },
+            "Program Manager": {
+              "allow": ["view_channel", "send_messages", "create_public_threads", "create_private_threads"]
+            },
+            "Project Manager": {
+              "allow": ["view_channel", "send_messages", "create_public_threads", "create_private_threads"]
+            },
+            "Scrum Master": {
+              "allow": ["view_channel", "send_messages", "create_public_threads", "create_private_threads"]
+            },
+            "DevOps": {
+              "allow": ["view_channel", "send_messages", "create_public_threads", "create_private_threads"]
+            },
+            "Developers": {
+              "allow": ["view_channel", "send_messages", "create_public_threads", "create_private_threads"]
+            },
+            "Designers": {
+              "allow": ["view_channel", "send_messages", "create_public_threads", "create_private_threads"]
+            },
+            "QA": {
+              "allow": ["view_channel", "send_messages", "create_public_threads", "create_private_threads"]
+            },
+            "Contractors": {
+              "allow": ["view_channel", "send_messages", "create_public_threads", "create_private_threads", "attach_files"]
+            },
+            "Bots": {
+              "allow": ["view_channel", "send_messages"]
+            }
+          }
+        },
+        {
+          "name": "partner-briefing",
+          "type": "text",
+          "topic": "Read-only delivery milestones, assumptions, and decisions.",
+          "slowmode_delay": 0,
+          "overwrites": {
+            "@everyone": {
+              "deny": ["view_channel"]
+            },
+            "Owner": {
+              "allow": ["view_channel", "send_messages", "create_public_threads"]
+            },
+            "Program Manager": {
+              "allow": ["view_channel", "send_messages", "create_public_threads"]
+            },
+            "Project Manager": {
+              "allow": ["view_channel", "send_messages", "create_public_threads"]
+            },
+            "Contractors": {
+              "allow": ["view_channel"],
+              "deny": ["send_messages", "create_public_threads", "create_private_threads"]
+            }
+          }
+        },
+        {
+          "name": "partner-artifacts",
+          "type": "text",
+          "topic": "Deliverables exchange with external partners.",
+          "slowmode_delay": 0,
+          "overwrites": {
+            "@everyone": {
+              "deny": ["view_channel"]
+            },
+            "Owner": {
+              "allow": ["view_channel", "send_messages", "attach_files"]
+            },
+            "Program Manager": {
+              "allow": ["view_channel", "send_messages", "attach_files"]
+            },
+            "Project Manager": {
+              "allow": ["view_channel", "send_messages", "attach_files"]
+            },
+            "Scrum Master": {
+              "allow": ["view_channel", "send_messages", "attach_files"]
+            },
+            "DevOps": {
+              "allow": ["view_channel", "send_messages", "attach_files"]
+            },
+            "Developers": {
+              "allow": ["view_channel", "send_messages", "attach_files"]
+            },
+            "Designers": {
+              "allow": ["view_channel", "send_messages", "attach_files"]
+            },
+            "QA": {
+              "allow": ["view_channel", "send_messages", "attach_files"]
+            },
+            "Contractors": {
+              "allow": ["view_channel", "send_messages", "attach_files"]
+            }
+          }
+        },
+        {
+          "name": "partner-standups",
+          "type": "text",
+          "topic": "Async status for external partner squads (use /standup).",
+          "slowmode_delay": 0,
+          "overwrites": {
+            "@everyone": {
+              "deny": ["view_channel"]
+            },
+            "Owner": {
+              "allow": ["view_channel", "send_messages", "create_public_threads", "create_private_threads"]
+            },
+            "Program Manager": {
+              "allow": ["view_channel", "send_messages", "create_public_threads", "create_private_threads"]
+            },
+            "Project Manager": {
+              "allow": ["view_channel", "send_messages", "create_public_threads", "create_private_threads"]
+            },
+            "Scrum Master": {
+              "allow": ["view_channel", "send_messages", "create_public_threads", "create_private_threads"]
+            },
+            "Developers": {
+              "allow": ["view_channel", "send_messages", "create_public_threads", "create_private_threads"]
+            },
+            "Designers": {
+              "allow": ["view_channel", "send_messages", "create_public_threads", "create_private_threads"]
+            },
+            "QA": {
+              "allow": ["view_channel", "send_messages", "create_public_threads", "create_private_threads"]
+            },
+            "Contractors": {
+              "allow": ["view_channel", "send_messages", "create_public_threads", "create_private_threads"]
+            },
+            "Bots": {
+              "allow": ["view_channel", "send_messages"]
             }
           }
         }

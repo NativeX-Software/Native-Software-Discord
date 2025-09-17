@@ -34,6 +34,8 @@ teams.
   `/retro open`, `/oncall`.
 - AI Router Bot command: `/ai ask` with OpenAI, Anthropic, Gemini, and Grok
   providers and role prompts.
+- Partner workspace that allows contractors to collaborate securely without
+  exposing governance/on-call channels.
 - Handover with full ownership, rotated secrets, and archived state.
 
 **Acceptance**
@@ -52,12 +54,14 @@ teams.
 
 ```
 Discord Guild
-├─ Categories: General, Programs, Project-* (Alpha/Beta/..), Agile, Waterfall,
-│              DevOps & CI/CD, Design & Docs, Governance, Voice/Stage
+├─ Categories: General, Programs, Project-* (Alpha/Beta/..), Partner-Projects,
+│              Agile, Waterfall, DevOps & CI/CD, Design & Docs, Governance,
+│              Voice/Stage
 ├─ Webhooks:  GitHub/GitLab/Jenkins/Azure DevOps → #ci-cd-pipeline
 │             Grafana/Prometheus/Datadog/Sentry → #alerts
 ├─ Roles:     Owner, Program Manager, Project Manager, Scrum Master, DevOps,
-│             Developers, Designers, QA, On-Call, Stakeholders, Bots
+│             Developers, Designers, QA, Contractors, On-Call, Stakeholders,
+│             Bots
 ├─ Bots:
 │   1) Ops Slash Bot  (`discord_slash_bot_plus`)
 │      - /standup, /standup_sched, /wbs, /deploy approve, /retro open, /oncall
@@ -98,6 +102,11 @@ Discord Guild
      `oncall.json`.
    - Ensure `discord_team_hub_blueprint/server_state.json` and related files are
      retained after provisioning; bots reference IDs/webhooks stored there.
+5. **Contractor segmentation plan**
+   - Pre-create the **Contractors** role in your production org so Discord SSO
+     tools can auto-assign it.
+   - Decide which internal roles shadow vendor leads (e.g. assign a Project
+     Manager or Scrum Master for every external squad) to maintain accountability.
 
 ---
 
@@ -201,9 +210,10 @@ Discord Guild
 
 2. **Slash command**
 
-   `/ai provider:<openai|anthropic|gemini|grok> model:<text> role:<default|code|pm|ops|exec|design|research> prompt:<text> temp:0.2 max_tokens:800 thread:true public:false`
+   `/ai provider:<openai|anthropic|gemini|grok> model:<text> role:<default|code|pm|ops|exec|design|research|partner> prompt:<text> temp:0.2 max_tokens:800 thread:true public:false`
 
-   - Role prompts defined in `prompts.json`; extend for additional personas.
+   - Role prompts defined in `prompts.json` (now including `partner` for vendor
+     coordination); extend for additional personas.
    - Providers live under `providers/`; implement `complete()` in a new class and
      register it in `providers/__init__.py` to add more backends.
    - Default rate limit is 5 requests per 60 seconds per channel (adjust in
@@ -274,9 +284,41 @@ Key notes:
 
 - `/ai role:exec` for weekly summaries, ROI notes, hiring implications.
 
+**External contractors & partners**
+
+- Assign the **Contractors** role when inviting vendors so sensitive channels
+  remain hidden by default.
+- Use `#partner-lobby`, `#partner-artifacts`, and `#partner-standups` for daily
+  collaboration; leadership posts direction and constraints in
+  `#partner-briefing`.
+- Keep finance/governance, on-call, and incident channels internal by not
+  granting contractors those roles; mirror critical decisions back into
+  partner-visible threads as required.
+
 ---
 
-## 7) Integration Details (Concise but Exact)
+## 7) External Contractor & Partner Enablement
+
+1. **Role provisioning** – Assign the **Contractors** role immediately after the
+   invite is accepted. Keep internal roles (DevOps, Governance, On-Call) scoped
+   to employees only.
+2. **Workspace allocation** – Move contract teams into the
+   `Partner-Projects` category. Duplicate the category per vendor or per
+   programme by copying the block in `server_spec.json` and renaming the
+   channels.
+3. **Information boundaries** – Share curated runbooks/templates in
+   `#partner-artifacts` and summarise approvals in `#partner-briefing` instead of
+   exposing internal governance threads.
+4. **Automation usage** – Configure `/standup_sched` and `/wbs` within the
+   partner category only. `/deploy approve` should stay internal; replicate the
+   outcome card in partner channels once governance approves.
+5. **Security & exit** – Audit membership monthly, disable access immediately
+   after contract completion, and archive partner channels via Discord's export
+   plus `server_state.json` snapshots.
+
+---
+
+## 8) Integration Details (Concise but Exact)
 
 **GitHub Webhook**
 - Events: `push`, `pull_request`, `workflow_run`.
@@ -298,7 +340,7 @@ Key notes:
 
 ---
 
-## 8) Security, Privacy, Compliance
+## 9) Security, Privacy, Compliance
 
 - Keep secrets in `.env`; never commit them; rotate on handover.
 - Enforce channel overwrites per `server_spec.json`, especially read-only and
@@ -310,7 +352,7 @@ Key notes:
 
 ---
 
-## 9) Testing Plan (Minimum)
+## 10) Testing Plan (Minimum)
 
 1. **Provisioning validation**
    - Run the blueprint; verify categories/channels/permissions.
@@ -342,7 +384,7 @@ Key notes:
 
 ---
 
-## 10) Ops Runbook (Cheat Sheet)
+## 11) Ops Runbook (Cheat Sheet)
 
 - Restart bots: `systemctl restart nativex-ops-bot` / `nativex-ai-router` or
   `docker compose restart ops_bot ai_router_bot`.
@@ -355,7 +397,7 @@ Key notes:
 
 ---
 
-## 11) Handover Checklist (Final)
+## 12) Handover Checklist (Final)
 
 - Promote customer contact to Server Owner; remove developer Admin access.
 - Rotate Discord bot tokens, provider API keys, and webhook secrets; regenerate
@@ -369,7 +411,7 @@ Key notes:
 
 ---
 
-## 12) Deliverables (What the Developer Must Hand Back)
+## 13) Deliverables (What the Developer Must Hand Back)
 
 - Running Discord server matching `server_spec.json` (duplicate project
   categories as requested).
@@ -394,4 +436,6 @@ Key notes:
 - `#release-approval` → Program/PM/DevOps post; reactions count as approvals.
 - `#on-call` → Visible only to On-Call/DevOps/Program Manager.
 - `#runbooks` / `#how-to` → Pin SOPs and onboarding material.
+- `Partner-Projects` → Use lobby/briefing/artifacts/standups channels to isolate
+  contractor collaboration per vendor.
 - Project categories replicate the Alpha pattern (Planning/WBS/Design/Dev/Test/Retro).

@@ -7,8 +7,8 @@ workflow.
 
 ## Contents
 
-- `server_spec.json` – canonical description of the guild layout, roles, and
-  webhooks.
+- `server_spec.json` – canonical description of the guild layout, roles (native
+  and external/contractor), and webhooks.
 - `create_discord_server.py` – provisioning script that reconciles a guild to
   match the specification.
 - `server_state.json` – generated on first run with identifiers and webhook
@@ -57,6 +57,10 @@ python -m pip install -U "discord.py>=2.3.2"
   they are created and record their URLs.
 - Permission overwrites use role names; ensure any new roles exist in the `roles`
   section before referencing them in a channel.
+- To support external collaborators, assign them the **Contractors** role and
+  use the pre-built **Partner-Projects** category (lobby, briefing, artifacts,
+  standups) for secure collaboration. Duplicate this category per vendor or
+  programme when you need isolated workspaces.
 
 ## Testing Checklist
 
