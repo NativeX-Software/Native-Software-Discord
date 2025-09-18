@@ -6,7 +6,7 @@ This repository sets up a complete Discord workspace for a software delivery tea
 - **An Ops bot** that runs standups, retros, on-call rotations, and deployment approvals.
 - **An AI bot** that responds to `/ai` questions using OpenAI, Anthropic, Gemini, or Grok.
 
-Use the steps below for a quick start. When you need more depth, reference `DEVELOPER_BUILD_MANUAL.md`.
+Use the steps below for a quick start. When you need more depth, reference `0-DEVELOPER_MANUAL.md`.
 
 ---
 
@@ -25,7 +25,7 @@ Use the steps below for a quick start. When you need more depth, reference `DEVE
 /discord_team_hub_blueprint   -> scripts and JSON to provision the Discord server
 /discord_slash_bot_plus       -> Ops bot implementation
 /discord_ai_router_bot        -> AI router bot implementation
-DEVELOPER_BUILD_MANUAL.md     -> full build and handover manual
+0-DEVELOPER_MANUAL.md         -> full build and handover manual
 docker-compose.yml            -> optional Docker setup for both bots
 ```
 
@@ -162,4 +162,4 @@ Confirm that `.env` files are filled in before starting. The compose file mounts
 
 ---
 
-You now have the short version of the setup. Refer to `DEVELOPER_BUILD_MANUAL.md` whenever you need the complete runbook and acceptance checklist.
+You now have the short version of the setup. Refer to `0-DEVELOPER_MANUAL.md` whenever you need the complete runbook and acceptance checklist.

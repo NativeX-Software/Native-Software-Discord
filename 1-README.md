@@ -18,7 +18,7 @@ channels internal.
 
 Each folder includes a dedicated README with setup instructions, environment
 variables, and testing checklists. A consolidated build manual lives at
-`DEVELOPER_BUILD_MANUAL.md` and mirrors the delivery checklist provided in the
+`0-DEVELOPER_MANUAL.md` and mirrors the delivery checklist provided in the
 project brief.
 
 To package for distribution, zip each directory individually:
@@ -32,7 +32,7 @@ zip -r discord_ai_router_bot.zip discord_ai_router_bot
 The resulting archives can be handed to operations along with the state files
 produced during provisioning (`server_state.json`, `schedules.json`,
 `oncall.json`) and any environment variable secrets (redacted). Include
-`docker-compose.yml` and `DEVELOPER_BUILD_MANUAL.md` so operations can reuse the
+`docker-compose.yml` and `0-DEVELOPER_MANUAL.md` so operations can reuse the
 container stack and walkthrough without cloning the repository.
 
 ## Containerized Deployment

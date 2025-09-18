@@ -1,1 +1,7 @@
-{}
+{
+  "guild_id": null,
+  "roles": {},
+  "categories": {},
+  "channels": {},
+  "webhooks": {}
+}

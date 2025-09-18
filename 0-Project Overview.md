@@ -95,9 +95,9 @@ These bots make the Discord space feel like a productivity app instead of a chat
 If you need deeper detail:
 
 - `discord_team_hub_blueprint/server_spec.json` – the master list of roles, categories, channels, and permission rules.
-- `DEVELOPER_BUILD_MANUAL.md` – full build-and-handover manual.
+- `0-DEVELOPER_MANUAL.md` – full build-and-handover manual.
 - `discord_slash_bot_plus/README_PLUS.md` – everything about the Ops bot commands.
 - `discord_ai_router_bot/README_AI_ROUTER.md` – how the AI routing works.
-- `NEW_USER_ONBOARDING.md` – step-by-step setup instructions.
+- `2-README.md` – step-by-step onboarding guide for new builders.
 
 Use this cheat sheet to keep the big picture in mind, then dive into the deeper docs when you’re ready to run the full build.
